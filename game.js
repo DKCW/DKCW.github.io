@@ -36,7 +36,7 @@ function addRandomColor() {
         playAnimationAndSound(gamePattern[i]);
       }, 500 * i);
     }
-  }, 1000);
+  }, 850);
 };
 
 
