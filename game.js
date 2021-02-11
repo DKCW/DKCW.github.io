@@ -16,25 +16,29 @@ $("h1").click(function() {
 // Generating new sequence and add it to gamePattern[]
 function addRandomColor() {
 
-  var randomColor = buttonColors[Math.floor(Math.random() * 4)];
-  gamePattern.push(randomColor);
+    var randomColor = buttonColors[Math.floor(Math.random() * 4)];
+    gamePattern.push(randomColor);
 
-  level++;
-  $("#level-title").html("Level " + level)
-  userInput = [];
+    level++;
+    $("#level-title").html("Level " + level)
+    userInput = [];
 
+    //   setTimeout(function() {
+    //     playAnimationAndSound(randomColor);
+    //   }, 800);
   setTimeout(function() {
-    playAnimationAndSound(randomColor);
-  }, 800);
+    for (var i = 0; i < gamePattern.length; i++) {
+      playSequence(i)
+    }
+
+    function playSequence(i) {
+      setTimeout(function() {
+        playAnimationAndSound(gamePattern[i]);
+      }, 500 * i);
+    }
+  }, 1000);
 };
 
-
-
-// function playSequence(i) {
-//   setTimeout(function() {
-//     playAnimationAndSound(gamePattern[i]);
-// }, 1000);
-// }
 
 
 // Check what button is being clicked and add it to the userInput[]
@@ -45,14 +49,14 @@ $(".btn").click(function() {
   playAnimationAndSound(this.id);
 
   // Check answer
-  for (var i = 0; i < userInput.length; i++) {
+  for (var j = 0; j < userInput.length; j++) {
 
-    if (gamePattern[i] != userInput[i]) {
+    if (gamePattern[j] != userInput[j]) {
       gameOver();
 
     } else {
       if (gamePattern.length === userInput.length) {
-        addRandomColor();
+        addRandomColor()
       }
     }
   };
