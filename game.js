@@ -6,7 +6,7 @@ var userInput = [];
 var level = 0;
 
 // Starting the game
-$(document).keydown(function() {
+$("h1").click(function() {
   if (level === 0) {
     addRandomColor();
   }
@@ -27,6 +27,14 @@ function addRandomColor() {
     playAnimationAndSound(randomColor);
   }, 800);
 };
+
+
+
+// function playSequence(i) {
+//   setTimeout(function() {
+//     playAnimationAndSound(gamePattern[i]);
+// }, 1000);
+// }
 
 
 // Check what button is being clicked and add it to the userInput[]
@@ -61,6 +69,7 @@ function playAnimationAndSound(color) {
 
   var soundEffect = new Audio("sounds/" + color + ".mp3");
   soundEffect.play();
+
 };
 
 
@@ -75,7 +84,7 @@ function gameOver() {
     $("body").removeClass("game-over")
   }, 100);
 
-  $("#level-title").html("Press Any key to restart")
+  $("#level-title").html("Click here to restart")
   level = 0;
   userInput = [];
   gamePattern = [];
